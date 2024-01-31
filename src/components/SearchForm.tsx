@@ -8,7 +8,9 @@ import {
     View,
 } from "react-native";
 import React, { useState } from "react";
-import DateTimePicker, { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import DateTimePicker, {
+    DateTimePickerAndroid,
+} from "@react-native-community/datetimepicker";
 import { Feather } from "@expo/vector-icons";
 
 export default function SearchForm() {
@@ -21,28 +23,28 @@ export default function SearchForm() {
         console.log(`Searching for: `);
     };
 
-    const setDatePickerDepart = () => { 
+    const setDatePickerDepart = () => {
         DateTimePickerAndroid.open({
             value: departDate,
             onChange(event, date) {
                 setDepartDate(date || new Date());
             },
-            mode: 'date',
+            mode: "date",
             is24Hour: true,
-            minimumDate: new Date()
-        })
+            minimumDate: new Date(),
+        });
     };
 
-    const setDatePickerReturn = () => { 
+    const setDatePickerReturn = () => {
         DateTimePickerAndroid.open({
             value: returnDate,
             onChange(event, date) {
                 setReturnDate(date || new Date());
             },
-            mode: 'date',
+            mode: "date",
             is24Hour: true,
-            minimumDate: departDate
-        })
+            minimumDate: departDate,
+        });
     };
 
     return (
@@ -89,8 +91,18 @@ export default function SearchForm() {
                         </>
                     ) : (
                         <>
-                            <DateTimePicker value={departDate} onChange={(event, date) => setDepartDate(date || new Date())} minimumDate={new Date()} style={styles.datePickerIOS} />
-                            <DateTimePicker value={returnDate} onChange={(event, date) => setReturnDate(date || new Date())} minimumDate={departDate} style={styles.datePickerIOS} />
+                            <DateTimePicker
+                                value={departDate}
+                                onChange={(event, date) => setDepartDate(date || new Date())}
+                                minimumDate={new Date()}
+                                style={styles.datePickerIOS}
+                            />
+                            <DateTimePicker
+                                value={returnDate}
+                                onChange={(event, date) => setReturnDate(date || new Date())}
+                                minimumDate={departDate}
+                                style={styles.datePickerIOS}
+                            />
                         </>
                     )}
                 </View>
@@ -153,5 +165,5 @@ const styles = StyleSheet.create({
         backgroundColor: "gainsboro",
         borderRadius: 5,
         marginVertical: 2,
-    }
+    },
 });
